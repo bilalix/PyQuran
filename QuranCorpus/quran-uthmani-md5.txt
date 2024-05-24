@@ -1,1 +1,1 @@
-MD5 (quran-uthmani.xml) = 6aae945d556a1b28cfe682c0ea5ab518
+MD5 (quran-uthmani.xml) = 0f2072491520ad77ae9b5c7a71ce4a37
