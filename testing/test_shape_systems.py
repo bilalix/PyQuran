@@ -20,8 +20,8 @@ example
                  [jeem, hah, khah]]
 
 
-    # passing system to count_shape along with Sura.
-    count_shape(Sura, system)
+    # passing system to count_rasm along with Sura.
+    count_rasm(Sura, system)
 '''
 
 # Preparing a system
@@ -35,7 +35,7 @@ newSystem = [[beh, teh, alef],
 sura  = quran.get_sura(108)
 
 # Computing count shape matrix
-countMatrix = pyquran.count_shape(sura)
+countMatrix = pyquran.count_rasm(sura)
 
 # Use columnGuide to know which coulmn
 # secod parameter is optional, in this case
@@ -46,6 +46,5 @@ columnGuide = pyquran.check_system(defualtSyst, 5)
 
 print(columnGuide)
 print(countMatrix)
-
 
 

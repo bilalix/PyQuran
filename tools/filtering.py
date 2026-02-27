@@ -24,6 +24,7 @@ small_high_rounded_zero     = '\u06df'
 empty_center_low_stop       = '\u06ea'
 small_high_upright_rectangular_zero  = '\u06e0'
 rounded_high_stop_with_filled_centre = '\u06ec'
+small_high_ligature_qaf_lam_alef_maksura = '\u06d7'
 
 
 recitationSymbols = [ 
@@ -43,7 +44,8 @@ recitationSymbols = [
     small_high_rounded_zero, # Remove
     empty_center_low_stop, # Remove
     small_high_upright_rectangular_zero, # Remove
-    rounded_high_stop_with_filled_centre # Remove
+    rounded_high_stop_with_filled_centre, # Remove
+    small_high_ligature_qaf_lam_alef_maksura # Remove
 ]
 
 'my_user_name'
@@ -102,7 +104,8 @@ remove_no_tashkeel_after = [
         small_high_rounded_zero, # Remove
         empty_center_low_stop, # Remove
         small_high_upright_rectangular_zero, # Remove
-        rounded_high_stop_with_filled_centre # Remove
+        rounded_high_stop_with_filled_centre, # Remove
+        small_high_ligature_qaf_lam_alef_maksura # Remove
 ]
 
 def recitation_symbols_filter(string, symbols=recitationSymbols):
@@ -123,16 +126,20 @@ def recitation_symbols_filter(string, symbols=recitationSymbols):
     for symbol in symbols:
         if symbol == alef_wasl_with_saad_above:
             string = string.replace(alef_wasl_with_saad_above, arabic.alef)
-        # Do not remove hamza_above
+        # Normalize combining hamza-above into standalone hamza.
         elif symbol == hamza_above:
-            continue
+            string = string.replace(hamza_above, arabic.hamza)
         elif symbol in remove_no_tashkeel_after:
             string = string.replace(symbol, '')
         else:
             for pat in patterns_list:
                 string = re.sub( pat , '', string)
 
-    return string
+    # Remove Quran annotation marks (e.g., pause symbols) that are not part of
+    # lexical text. Hamza-above is outside this range and remains untouched.
+    string = re.sub(r"[\u06d6-\u06ed]", "", string)
+
+    return re.sub(r" +", " ", string).strip()
 
 '''
 for x in recitationSymbols :
