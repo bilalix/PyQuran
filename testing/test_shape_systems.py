@@ -1,22 +1,6 @@
-# Adding another searching path
-from sys import path
-import os
-
-# The current path of the current module.
-path_current_module = os.path.dirname(os.path.abspath(__file__))
-tools_modules = '../tools/'
-core_modules = '../core/'
-
-tools_path = os.path.join(path_current_module, tools_modules)
-core_path  = os.path.join(path_current_module, core_modules)
-
-
-path.append(tools_path)
-path.append(core_path)
-
 import pyquran
-import quran
-from arabic import *
+from pyquran.tools import quran
+from pyquran.tools.arabic import *
 
 
 '''
@@ -62,7 +46,6 @@ columnGuide = pyquran.check_system(defualtSyst, 5)
 
 print(columnGuide)
 print(countMatrix)
-
 
 
 

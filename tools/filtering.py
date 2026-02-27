@@ -2,9 +2,10 @@
     reference: en.wikipedia.org/wiki/Arabic_script_in_Unicode
 '''
 
-import arabic
-import error
 import re
+
+from pyquran.tools import arabic
+from pyquran.tools import error
 
 hamza_above     = '\u0654' # u'\u0654'
 small_high_meem = '\u06e2'
@@ -49,7 +50,7 @@ recitationSymbols = [
 '''
 # Cannot fide hamza_above
 import tools
-import arabic
+from pyquran.tools import arabic
 x = tools.search_sequence([hamza_above])
 print(x)
 
